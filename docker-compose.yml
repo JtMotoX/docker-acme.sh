@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  acme-sh:
+    image: mcuadros/ofelia:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./config.ini:/etc/ofelia/config.ini:ro
+    command: daemon --config=/etc/ofelia/config.ini
