@@ -9,14 +9,19 @@
 	1) Set the schedule based on the GO implementation of cron ([link](https://pkg.go.dev/github.com/robfig/cron#hdr-CRON_Expression_Format)) which is not the common standard
 1) If you already have existing acme.<span>sh certs, place the files in the following file structure
 ```
-./acme.sh
-	./certs
-		./example.com
-		./mysite.com
-	./configs
-		./ca
-			./...
-			./...
-		./account.conf
-		./http.header
+acme.sh
+|
+|__ certs
+|	|
+|	|__ example.com (dir)
+|	|
+|	|__ mysite.com (dir)
+|
+|__ configs
+	|
+	|__ ca (dir)
+	|
+	|__ account.conf (file)
+	|
+	|__ http.header (file)
 ```
