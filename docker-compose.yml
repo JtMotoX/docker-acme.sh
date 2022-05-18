@@ -9,7 +9,6 @@ services:
     environment:
       LE_HOME: /acme.sh
       LE_CONFIG_HOME: /acme.sh/configs
-      ACME_SERVER: letsencrypt
     volumes:
       - ./crontab:/etc/crontabs/root:ro
       - ./acme-logs:/var/log/acme-logs
