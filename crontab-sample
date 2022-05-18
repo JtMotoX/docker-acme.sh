@@ -1,0 +1,2 @@
+# acme.sh weekly renew
+0 11 1 * * 0 acme.sh --cron >>/var/log/acme-logs/acme-cron.log 2>&1

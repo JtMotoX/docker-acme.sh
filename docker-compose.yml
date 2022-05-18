@@ -2,10 +2,25 @@ version: '3'
 
 services:
   acme-sh:
-    image: mcuadros/ofelia:latest
+    image: neilpang/acme.sh:latest
     container_name: acme-sh
     restart: always
+    env_file: .env
+    environment:
+      LE_HOME: /acme.sh
+      LE_CONFIG_HOME: /acme.sh/configs
+      ACME_SERVER: letsencrypt
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./config.ini:/etc/ofelia/config.ini:ro
-    command: daemon --config=/etc/ofelia/config.ini
+      - ./crontab:/etc/crontabs/root:ro
+      - ./acme-logs:/var/log/acme-logs
+      - ./acme.sh:/acme.sh
+    command: |
+      sh -c '
+        echo "NOTE: You will need to restart this container after making changes to the 'crontab' file"
+        if [ -n "$${ACME_SERVER+set}" ]; then
+          acme.sh --set-default-ca --server $${ACME_SERVER}
+        fi
+        echo "Starting cron . . ."
+        exit 1
+        crond -f -L /proc/1/fd/1
+      '

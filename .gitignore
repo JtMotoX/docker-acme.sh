@@ -1,4 +1,5 @@
 /acme-logs
 /acme.sh
 
-/dynu.env
+/.env
+/crontab
