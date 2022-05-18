@@ -21,6 +21,5 @@ services:
           acme.sh --set-default-ca --server $${ACME_SERVER}
         fi
         echo "Starting cron . . ."
-        exit 1
         crond -f -L /proc/1/fd/1
       '
