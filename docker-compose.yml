@@ -2,23 +2,11 @@ version: '3'
 
 services:
   acme-sh:
-    image: neilpang/acme.sh:latest
+    build: ./build
     container_name: acme-sh
     restart: always
     env_file: .env
-    environment:
-      LE_HOME: /acme.sh
-      LE_CONFIG_HOME: /acme.sh/configs
     volumes:
-      - ./crontab:/etc/crontabs/root:ro
       - ./acme-logs:/var/log/acme-logs
       - ./acme.sh:/acme.sh
-    command: |
-      sh -c '
-        echo "NOTE: You will need to restart this container after making changes to the 'crontab' file"
-        if [ -n "$${ACME_SERVER+set}" ]; then
-          acme.sh --set-default-ca --server $${ACME_SERVER}
-        fi
-        echo "Starting cron . . ."
-        crond -f -L /proc/1/fd/1
-      '
+      - ./build/crontab:/crontab

@@ -4,7 +4,7 @@
 
 ## Setup:
 
-1. Copy the [crontab-sample](crontab-sample) to `crontab`
+1. Copy the [crontab-sample](./build/crontab-sample) to [crontab](./build/crontab)
 1. If you already have existing acme.<span>sh certs, place the files in the following file structure
 ```
 acme.sh
