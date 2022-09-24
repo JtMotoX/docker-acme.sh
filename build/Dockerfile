@@ -9,7 +9,7 @@ RUN wget https://github.com/aptible/supercronic/releases/download/${SUPERCRONIC_
 COPY --chmod=644 ./crontab /crontab
 RUN supercronic -json -test /crontab
 
-ENV USER_ID="1001"
+ENV USER_ID="9001"
 
 ENV LE_HOME="/acme.sh"
 ENV LE_CONFIG_HOME="/acme.sh/configs"
